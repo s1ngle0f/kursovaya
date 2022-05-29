@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="templateforall :: head"></head>
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+  <div class="loader"></div>
+</div>
+
+<!-- Header section -->
+<header th:insert="templateforall :: header"></header>
+<!-- Header section end -->
+
+
+<!-- Page info section -->
+<section class="page-top-info set-bg" data-setbg="img/page-top-bg/4.jpg">
+  <div class="ptf-center">
+    <div class="container">
+      <h2>Registration<span>.</span></h2>
+    </div>
+  </div>
+</section>
+<!-- Page info section end -->
+
+<div class="contact-form-area">
+  <div class="container">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="contact-form-warp">
+        <div class="section-title">
+          <i class="flaticon-026-chicken-1"></i>
+          <h2>Registration</h2>
+        </div>
+        <!-- contact form -->
+        <form class="contact-form" method="post">
+          <div class="rowsender">
+            <div class="col-md-6">
+              <input name="email" type="email" placeholder="E-mail">
+            </div>
+            <div class="col-md-6">
+              <input name="password" type="password" placeholder="Password">
+            </div>
+            <div class="col-md-6">
+              <input name="trypassword" type="password" placeholder="Repeat the password">
+            </div>
+            <div class="text-center">
+              <button class="site-btn" type="submit">Registrate</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer section -->
+<footer th:insert="templateforall :: footer"></footer>
+<!-- Footer section end -->
+
+
+<!--====== Javascripts & Jquery ======-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/circle-progress.min.js"></script>
+<script src="js/main.js"></script>
+
+
+<!-- load for map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
+<script src="js/map.js"></script>
+
+
+</body>
+</html>
