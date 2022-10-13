@@ -35,6 +35,12 @@ class KursovayaApplicationTests {
 	}
 
 	@Test
+	void CreateClient(){
+		Client client = new Client("nikita@wot.ru", "111");
+		clientRepo.saveAndFlush(client);
+	}
+
+	@Test
 	void GetClient(){
 		Client client = clientRepo.findClientById(54);
 		System.out.println(client);
