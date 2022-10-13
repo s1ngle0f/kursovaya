@@ -27,6 +27,9 @@ public class Client implements Serializable {
     @Column(name = "psswrd")
     private String psswrd;
 
+    @Column(name = "role")
+    private String role;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_address")
     private Address fk_address;
@@ -43,6 +46,7 @@ public class Client implements Serializable {
     {
         this.email = email;
         this.psswrd = psswrd;
+        this.role = "user";
     }
 
     @Builder
@@ -50,6 +54,7 @@ public class Client implements Serializable {
         this.email = email;
         this.psswrd = psswrd;
         fk_address = address;
+        this.role = "user";
     }
 
     @Override

@@ -13,4 +13,8 @@ public interface ClientRepo extends JpaRepository<Client, Integer> //, ClientCus
     Client findClientById(int id);
 
     Client findClientByEmailAndAndPsswrd(String email, String psswrd);
+
+    List<Client> findAll();
+
+    int deleteClientById(int id);
 }

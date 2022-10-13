@@ -38,6 +38,51 @@ public class HomePageController
     @Autowired
     private AddressRepo addressRepo;
 
+    @GetMapping("users")
+    public String userList(HttpServletRequest request, Model model){
+        String ip = getClientIp(request);
+        if(authorizated.get(ip) != null)
+        {
+            if (authorizated.get(ip).getRole().equals("admin"))
+            {
+                model.addAttribute("users", clientRepo.findAll());
+                return "userList";
+            }
+        }
+        return "redirect:/account";
+    }
+
+    @PostMapping("users")
+    public String deleteUser(@RequestParam Map<String, Object> map, HttpServletRequest request, Model model){
+        String ip = getClientIp(request);
+        if(authorizated.get(ip) != null)
+        {
+            if (authorizated.get(ip).getRole().equals("admin"))
+            {
+                System.out.println(Integer.parseInt((String) map.get("id")));
+//                clientRepo.deleteClientById(Integer.parseInt((String) map.get("id")));
+                clientRepo.delete(clientRepo.findClientById(Integer.parseInt((String) map.get("id"))));
+                model.addAttribute("users", clientRepo.findAll());
+                return "userList";
+            }
+        }
+        return "redirect:/account";
+    }
+
+    @GetMapping("users/{id}")
+    public String user(HttpServletRequest request, Model model, @PathVariable("id") int id){
+        String ip = getClientIp(request);
+        if(authorizated.get(ip) != null)
+        {
+            if (authorizated.get(ip).getRole().equals("admin"))
+            {
+                model.addAttribute("user", clientRepo.findClientById(id));
+                return "user";
+            }
+        }
+        return "redirect:/account";
+    }
+
     @GetMapping("index")
     public String indexGet(){
         return "index";
