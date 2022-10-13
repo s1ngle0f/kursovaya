@@ -83,6 +83,36 @@ public class HomePageController
         return "redirect:/account";
     }
 
+    @PostMapping("users/{id}")
+    public String changeUser(@RequestParam Map<String, Object> map, HttpServletRequest request, Model model, @PathVariable("id") int id){
+        String ip = getClientIp(request);
+        if(authorizated.get(ip) != null)
+        {
+            if (authorizated.get(ip).getRole().equals("admin"))
+            {
+                Client client = clientRepo.findClientById(id);
+                if(map.get("type").equals("edit")){
+                    Address address = client.getFk_address();
+                    if( address == null )
+                        address = new Address();
+                    client.setEmail((String) map.get("email"));
+                    client.setPsswrd((String) map.get("password"));
+                    address.setCity((String) map.get("city"));
+                    address.setStreet((String) map.get("street"));
+                    address.setHouse((String) map.get("house"));
+                    address.setFlat((String) map.get("flat"));
+                    client.setFk_address(address);
+                    client.setRole((String) map.get("role"));
+                    clientRepo.saveAndFlush(client);
+                    System.out.println("Saved");
+                }
+                model.addAttribute("user", clientRepo.findClientById(id));
+                return "user";
+            }
+        }
+        return "redirect:/account";
+    }
+
     @GetMapping("index")
     public String indexGet(){
         return "index";
