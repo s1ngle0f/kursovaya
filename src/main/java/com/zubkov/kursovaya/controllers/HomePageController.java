@@ -104,6 +104,7 @@ public class HomePageController
                     client.setFk_address(address);
                     client.setRole((String) map.get("role"));
                     clientRepo.saveAndFlush(client);
+                    addressRepo.saveAndFlush(address);
                     System.out.println("Saved");
                 }
                 model.addAttribute("user", clientRepo.findClientById(id));
@@ -330,6 +331,7 @@ public class HomePageController
                 address.setFlat((String) map.get("flat"));
                 client.setFk_address(address);
                 clientRepo.saveAndFlush(client);
+                addressRepo.saveAndFlush(address);
                 System.out.println("Saved");
             }
             return "redirect:/account";
